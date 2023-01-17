@@ -85,7 +85,7 @@
             this.Controls.Add(this.adminRadioButton);
             this.Controls.Add(this.label1);
             this.Name = "ChooseRoleForm";
-            this.Text = "Pet Shop";
+            this.Text = "PetShop";
             this.ResumeLayout(false);
             this.PerformLayout();
 
