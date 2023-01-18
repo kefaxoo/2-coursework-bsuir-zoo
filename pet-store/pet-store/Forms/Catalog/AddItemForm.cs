@@ -26,12 +26,6 @@ namespace pet_store
                 return true;
             }
 
-            if (string.IsNullOrEmpty(priceTextBox.Text))
-            {
-                ShowMessageBox("Стоимость");
-                return true;
-            }
-
             if (string.IsNullOrEmpty(categoryTextBox.Text))
             {
                 ShowMessageBox("Категория");
@@ -59,7 +53,7 @@ namespace pet_store
         {
             if (!AreTextBoxEmpty())
             {
-                var price = Convert.ToDouble(priceTextBox.Text);
+                var price = Convert.ToDouble(priceNumericUpDown.Value);
                 var count = Convert.ToInt32(countNumericUpDown.Text);
                 var item = new Item(SQLClass.GetFirstFreeID("Items"), nameTextBox.Text, price, categoryTextBox.Text, count);
                 AddItem(item);

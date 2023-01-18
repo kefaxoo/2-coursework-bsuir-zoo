@@ -42,5 +42,11 @@ namespace pet_store
             AddItemForm addItemForm = new AddItemForm();
             addItemForm.Show();
         }
+
+        private void editItemButton_Click(object sender, EventArgs e)
+        {
+            EditItemsForm editItemsForm = new EditItemsForm();
+            editItemsForm.Show();
+        }
     }
 }

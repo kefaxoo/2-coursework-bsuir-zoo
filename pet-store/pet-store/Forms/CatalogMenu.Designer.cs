@@ -72,6 +72,7 @@
             this.editItemButton.TabIndex = 8;
             this.editItemButton.Text = "Редактирование товара";
             this.editItemButton.UseVisualStyleBackColor = true;
+            this.editItemButton.Click += new System.EventHandler(this.editItemButton_Click);
             // 
             // deleteItemButton
             // 

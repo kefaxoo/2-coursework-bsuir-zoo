@@ -38,5 +38,32 @@ namespace pet_store
         public void SetCategory(string category) => this.category = category;
 
         public void SetCount(int count) => this.count = count;
+
+        public static bool operator ==(Item i1, Item i2)
+        {
+            if (i1.GetID() == i2.GetID())
+            {
+                if (i1.GetName() == i2.GetName())
+                {
+                    if (i1.GetPrice() == i2.GetPrice())
+                    {
+                        if (i1.GetCategory() == i2.GetCategory())
+                        {
+                            if (i1.GetCount() == i2.GetCount())
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        public static bool operator !=(Item i1, Item i2)
+        {
+            return !(i1 == i2);
+        }
     }
 }
