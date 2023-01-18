@@ -55,6 +55,7 @@
             this.catalogButton.TabIndex = 1;
             this.catalogButton.Text = "Каталог";
             this.catalogButton.UseVisualStyleBackColor = true;
+            this.catalogButton.Click += new System.EventHandler(this.catalogButton_Click);
             // 
             // salesButton
             // 
