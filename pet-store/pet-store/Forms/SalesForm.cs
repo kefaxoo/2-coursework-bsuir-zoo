@@ -154,7 +154,7 @@ namespace pet_store
         private bool IsItemInBill(Item item)
         {
             foreach (var itemInBill in billItems) {
-                if (item == itemInBill)
+                if (item.GetID() == itemInBill.GetID())
                 {
                     return true;
                 }
