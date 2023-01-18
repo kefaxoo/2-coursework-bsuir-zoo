@@ -82,6 +82,7 @@
             this.deleteItemButton.TabIndex = 9;
             this.deleteItemButton.Text = "Удаление товара";
             this.deleteItemButton.UseVisualStyleBackColor = true;
+            this.deleteItemButton.Click += new System.EventHandler(this.deleteItemButton_Click);
             // 
             // CatalogMenu
             // 
