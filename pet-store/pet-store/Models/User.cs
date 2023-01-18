@@ -32,5 +32,29 @@ namespace pet_store
         public void SetPassword(string password) => this.password = password;
 
         public void SetRole(string role) => this.role = role;
+
+        public static bool operator == (User u1, User u2)
+        {
+            if (u1.GetID() == u2.GetID())
+            {
+                if (u1.GetLogin() == u2.GetLogin())
+                {
+                    if (u1.GetPassword() == u2.GetPassword())
+                    {
+                        if (u1.GetRole() == u2.GetRole())
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        public static bool operator != (User u1, User u2)
+        {
+            return !(u1 == u2);
+        }
     }
 }

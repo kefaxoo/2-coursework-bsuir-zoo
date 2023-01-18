@@ -21,6 +21,8 @@ namespace pet_store
             this.user = user;
             userLabel.Text += user.GetLogin();
             roleLabel.Text += user.GetRole();
+            dateLabel.Text = $"Дата: {DateTime.Now.ToShortDateString()}";
+            timeLabel.Text = $"Время: {DateTime.Now.ToShortTimeString()}";
             if (user.GetRole() == "Продавец")
             {
                 workersButton.Enabled = false;
@@ -48,7 +50,9 @@ namespace pet_store
 
         private void workersButton_Click(object sender, EventArgs e)
         {
-
+            WorkersMenu workersMenu = new WorkersMenu(user, this);
+            workersMenu.Show();
+            this.Hide();
         }
     }
 }
