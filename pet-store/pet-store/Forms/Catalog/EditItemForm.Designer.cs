@@ -104,6 +104,11 @@
             // countNumericUpDown
             // 
             this.countNumericUpDown.Location = new System.Drawing.Point(12, 174);
+            this.countNumericUpDown.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.countNumericUpDown.Name = "countNumericUpDown";
             this.countNumericUpDown.Size = new System.Drawing.Size(136, 23);
             this.countNumericUpDown.TabIndex = 8;
@@ -116,7 +121,7 @@
             this.saveButton.TabIndex = 9;
             this.saveButton.Text = "Сохранить изменения";
             this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // priceNumericUpDown
             // 

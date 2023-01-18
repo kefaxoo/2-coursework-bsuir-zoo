@@ -156,7 +156,7 @@
             this.addItemButton.TabIndex = 14;
             this.addItemButton.Text = "Добавить товар";
             this.addItemButton.UseVisualStyleBackColor = true;
-            this.addItemButton.Click += new System.EventHandler(this.addItemButton_Click);
+            this.addItemButton.Click += new System.EventHandler(this.AddItemButton_Click);
             // 
             // closeBillButton
             // 
@@ -166,6 +166,7 @@
             this.closeBillButton.TabIndex = 15;
             this.closeBillButton.Text = "Закрыть чек";
             this.closeBillButton.UseVisualStyleBackColor = true;
+            this.closeBillButton.Click += new System.EventHandler(this.CloseBillButton_Click);
             // 
             // openItemsButton
             // 
@@ -175,7 +176,7 @@
             this.openItemsButton.TabIndex = 16;
             this.openItemsButton.Text = "Открыть таблицу с товарами";
             this.openItemsButton.UseVisualStyleBackColor = true;
-            this.openItemsButton.Click += new System.EventHandler(this.openItemsButton_Click);
+            this.openItemsButton.Click += new System.EventHandler(this.OpenItemsButton_Click);
             // 
             // itemsDataGridView
             // 

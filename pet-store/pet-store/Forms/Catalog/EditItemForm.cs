@@ -1,20 +1,14 @@
-﻿using pet_store.Forms.Users;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using System;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace pet_store
 {
     public partial class EditItemForm : Form
     {
-        private Item oldItem;
+        private readonly Item oldItem;
         private Item newItem;
-        private EditItemsForm editItemsForm;
+        private readonly EditItemsForm editItemsForm;
 
         public EditItemForm(Item oldItem, EditItemsForm editItemsForm)
         {
@@ -42,7 +36,7 @@ namespace pet_store
             }
         }
 
-        private void saveButton_Click(object sender, EventArgs e)
+        private void SaveButton_Click(object sender, EventArgs e)
         {
             newItem = new Item(oldItem.GetID(), nameTextBox.Text, Convert.ToDouble(priceNumericUpDown.Value), categoryTextBox.Text, Convert.ToInt32(countNumericUpDown.Text));
             if (oldItem != newItem)

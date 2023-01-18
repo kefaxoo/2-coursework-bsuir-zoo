@@ -43,7 +43,7 @@
             this.viewUsersButton.TabIndex = 0;
             this.viewUsersButton.Text = "Просмотр всех пользователей";
             this.viewUsersButton.UseVisualStyleBackColor = true;
-            this.viewUsersButton.Click += new System.EventHandler(this.viewUsersButton_Click);
+            this.viewUsersButton.Click += new System.EventHandler(this.ViewUsersButton_Click);
             // 
             // addNewUserButton
             // 
@@ -53,7 +53,7 @@
             this.addNewUserButton.TabIndex = 1;
             this.addNewUserButton.Text = "Добавление нового пользователя";
             this.addNewUserButton.UseVisualStyleBackColor = true;
-            this.addNewUserButton.Click += new System.EventHandler(this.addNewUserButton_Click);
+            this.addNewUserButton.Click += new System.EventHandler(this.AddNewUserButton_Click);
             // 
             // editUserButton
             // 
@@ -63,7 +63,7 @@
             this.editUserButton.TabIndex = 2;
             this.editUserButton.Text = "Редактирование учётной записи";
             this.editUserButton.UseVisualStyleBackColor = true;
-            this.editUserButton.Click += new System.EventHandler(this.editUserButton_Click);
+            this.editUserButton.Click += new System.EventHandler(this.EditUserButton_Click);
             // 
             // deleteUserButton
             // 
@@ -73,7 +73,7 @@
             this.deleteUserButton.TabIndex = 3;
             this.deleteUserButton.Text = "Удаление учётной записи";
             this.deleteUserButton.UseVisualStyleBackColor = true;
-            this.deleteUserButton.Click += new System.EventHandler(this.deleteUserButton_Click);
+            this.deleteUserButton.Click += new System.EventHandler(this.DeleteUserButton_Click);
             // 
             // userLabel
             // 

@@ -1,23 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Text;
 using System.Timers;
 using System.Windows.Forms;
 using Timer = System.Timers.Timer;
+using Process = System.Diagnostics.Process;
+using System.IO;
 
 namespace pet_store
 {
     public partial class SalesForm : Form
     {
-        private ShowCatalog showCatalog = new ShowCatalog();
-        private readonly Timer timer = new Timer(1000);
+        private ShowCatalog showCatalog = new();
+        private readonly Timer timer = new(1000);
         private List<Item> items;
-        private List<Item> billItems;
-        private Menu menu;
+        private readonly List<Item> billItems;
+        private readonly Menu menu;
 
         public SalesForm(Menu menu)
         {
@@ -69,8 +67,8 @@ namespace pet_store
 
         private void UpdateDateAndTime(object sender, ElapsedEventArgs e)
         {
-            //dateLabel.Text = $"Дата: {DateTime.Now.ToShortDateString()}";
-            //timeLabel.Text = $"Время: {DateTime.Now.ToShortTimeString()}";
+            dateLabel.Text = $"Дата: {DateTime.Now.ToShortDateString()}";
+            timeLabel.Text = $"Время: {DateTime.Now.ToShortTimeString()}";
         }
 
         private void SalesForm_Load(object sender, EventArgs e)
@@ -79,7 +77,7 @@ namespace pet_store
             timer.Start();
         }
 
-        private void openItemsButton_Click(object sender, EventArgs e)
+        private void OpenItemsButton_Click(object sender, EventArgs e)
         {
             if (!showCatalog.Visible)
             {
@@ -127,7 +125,7 @@ namespace pet_store
         {
             if (e.ColumnIndex == itemsDataGridView.Columns[5].Index && e.RowIndex < billItems.Count)
             {
-                EditForm editForm = new EditForm(billItems[e.RowIndex], items[GetIndex()], this);
+                EditForm editForm = new(billItems[e.RowIndex], items[GetIndex()], this);
                 editForm.Show();
             }
         }
@@ -162,34 +160,45 @@ namespace pet_store
 
             return false;
         }
-        private void addItemButton_Click(object sender, EventArgs e)
+        private void AddItemButton_Click(object sender, EventArgs e)
         {
-            if (IsItemInList())
+            if (billItems.Count == 0)
             {
-                if (IsAvailable())
+                var item = items[GetIndex()];
+                billItems.Add(new Item(item, Convert.ToInt32(countNumericUpDown.Value)));
+                ReloadDataGridView();
+                countNumericUpDown.Value = 1;
+                idNumericUpDown.Value = 1;
+            } 
+            else
+            {
+                if (IsItemInList())
                 {
-                    var item = items[GetIndex()];
-                    if (!IsItemInBill(item))
+                    if (IsAvailable())
                     {
-                        billItems.Add(new Item(item, Convert.ToInt32(countNumericUpDown.Value)));
-                        ReloadDataGridView();
-                    } 
+                        var item = items[GetIndex()];
+                        if (!IsItemInBill(item))
+                        {
+                            billItems.Add(new Item(item, Convert.ToInt32(countNumericUpDown.Value)));
+                            ReloadDataGridView();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Данный товар уже в чеке, вы можете его изменить через кнопку \"Изменить\"", "Ошибка добавления", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+
+                        countNumericUpDown.Value = 1;
+                        idNumericUpDown.Value = 1;
+                    }
                     else
                     {
-                        MessageBox.Show("Данный товар уже в чеке, вы можете его изменить через кнопку \"Изменить\"", "Ошибка добавления", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Такого количества в наличии нет", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-               
-                    countNumericUpDown.Value = 1;
-                    idNumericUpDown.Value = 1;
                 }
                 else
                 {
-                    MessageBox.Show("Такого количества в наличии нет", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Вы ввели неправильный номер товара", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
-            else
-            {
-                MessageBox.Show("Вы ввели неправильный номер товара", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -211,6 +220,82 @@ namespace pet_store
             var index = billItems.FindIndex(i => i.GetID() == item.GetID());
             billItems.RemoveAt(index);
             ReloadDataGridView();
+        }
+
+        private static string DoubleToString(double value) => value.ToString().Replace(',', '.');
+
+        private void UpdateItems(Bill bill)
+        {
+            using (var connection = new SqlConnection(SQLClass.BuildConnectionString()))
+            {
+                connection.Open();
+                SQLClass.CheckStateOfConnection(connection);
+                foreach (var item in items)
+                {
+                    foreach (var billItem in billItems)
+                    {
+                        if (billItem.GetID() == item.GetID())
+                        {
+                            item.SetCount(item.GetCount() - billItem.GetCount());
+                        }
+                    }
+
+                    var command = new SqlCommand($"UPDATE Items SET Count = '{item.GetCount()}' WHERE ID = {item.GetID()}", connection);
+                    command.ExecuteNonQuery();
+                }
+
+                connection.Close();
+                if (MessageBox.Show("Чек успешно закрыт\nЖелаете открыть его для печати?", "Успешная операция", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+                {
+                    string text = $"Чек #{bill.getID()}\n{bill.getDate()} {bill.getTime()}\n\n";
+                    foreach (var item in items)
+                    {
+                        text += $"{item.GetName()} {item.GetPrice()} * {item.GetCount()} = {item.GetCount() * item.GetPrice()}\n";
+                    }
+
+                    text += $"\nСумма: {bill.getSum()}\nОплата: {bill.getGivenSum()} {bill.getTypeOfMoney()}\nСдача: {bill.getChange()}\n\nБЛАГОДАРИМ ЗА ПОКУПКУ!";
+                    string path = Environment.CurrentDirectory + "\\bills";
+                    Directory.CreateDirectory(path);
+                    using (var writer = new StreamWriter($"{path}\\{bill.getID()}.txt"))
+                    {
+                        writer.WriteLine(text);
+                    }
+
+                    Process.Start("notepad.exe", $"bills\\{bill.getID()}.txt");
+                }
+
+                this.Close();
+            }
+        }
+
+        private void AddBillToDatabase(Bill bill)
+        {
+            using (var connection = new SqlConnection(SQLClass.BuildConnectionString()))
+            {
+                connection.Open();
+                SQLClass.CheckStateOfConnection(connection);
+                var command = new SqlCommand($"INSERT INTO Bills (ID, Date, Time, Sum, GivenSum, Change, TypeOfMoney) VALUES ('{bill.getID()}', '{bill.getDate()}', '{bill.getTime()}', '{DoubleToString(bill.getSum())}', '{DoubleToString(bill.getGivenSum())}', '{DoubleToString(bill.getChange())}', N'{bill.getTypeOfMoney()}')", connection);
+                command.ExecuteNonQuery();
+                foreach (var item in billItems)
+                {
+                    command = new SqlCommand($"INSERT INTO Purchases (ID, BillID, ItemID, Count) VALUES ('{SQLClass.GetFirstFreeID("Purchases")}', '{bill.getID()}', '{item.GetID()}', '{item.GetCount()}')", connection);
+                    command.ExecuteNonQuery();
+                    UpdateItems(bill);
+                }
+            }
+        }
+
+        public void SetCloseBillData(double change, double givenSum, string typeMoney)
+        {
+            var now = DateTime.Now;
+            var bill = new Bill(SQLClass.GetFirstFreeID("Bills"), now.ToShortDateString(), now.ToShortTimeString(), Convert.ToDouble(sumTextBox.Text), givenSum, change, typeMoney);
+            AddBillToDatabase(bill);
+        }
+
+        private void CloseBillButton_Click(object sender, EventArgs e)
+        {
+            CloseBillForm closeBillForm = new(Convert.ToDouble(sumTextBox.Text), this);
+            closeBillForm.Show();
         }
     }
 }

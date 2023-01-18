@@ -115,7 +115,7 @@
             0,
             0,
             0});
-            this.countNumericUpDown.ValueChanged += new System.EventHandler(this.countNumericUpDown_ValueChanged);
+            this.countNumericUpDown.ValueChanged += new System.EventHandler(this.CountNumericUpDown_ValueChanged);
             // 
             // label5
             // 
@@ -142,7 +142,7 @@
             this.saveButton.TabIndex = 9;
             this.saveButton.Text = "Сохранить изменения";
             this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // deleteButton
             // 
@@ -152,7 +152,7 @@
             this.deleteButton.TabIndex = 10;
             this.deleteButton.Text = "Удаление товара";
             this.deleteButton.UseVisualStyleBackColor = true;
-            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+            this.deleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // EditForm
             // 

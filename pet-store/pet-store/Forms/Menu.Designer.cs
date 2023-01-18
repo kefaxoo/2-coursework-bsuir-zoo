@@ -45,7 +45,7 @@
             this.workersButton.TabIndex = 0;
             this.workersButton.Text = "Сотрудники";
             this.workersButton.UseVisualStyleBackColor = true;
-            this.workersButton.Click += new System.EventHandler(this.workersButton_Click);
+            this.workersButton.Click += new System.EventHandler(this.WorkersButton_Click);
             // 
             // catalogButton
             // 
@@ -55,7 +55,7 @@
             this.catalogButton.TabIndex = 1;
             this.catalogButton.Text = "Каталог";
             this.catalogButton.UseVisualStyleBackColor = true;
-            this.catalogButton.Click += new System.EventHandler(this.catalogButton_Click);
+            this.catalogButton.Click += new System.EventHandler(this.CatalogButton_Click);
             // 
             // salesButton
             // 
@@ -65,7 +65,7 @@
             this.salesButton.TabIndex = 2;
             this.salesButton.Text = "Продажи";
             this.salesButton.UseVisualStyleBackColor = true;
-            this.salesButton.Click += new System.EventHandler(this.salesButton_Click);
+            this.salesButton.Click += new System.EventHandler(this.SalesButton_Click);
             // 
             // userLabel
             // 

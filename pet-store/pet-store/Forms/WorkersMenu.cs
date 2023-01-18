@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace pet_store
 {
     public partial class WorkersMenu : Form
     {
-        private User user;
-        private Menu menu;
+        private readonly User user;
+        private readonly Menu menu;
 
         public WorkersMenu(User user, Menu menu)
         {
@@ -21,9 +16,9 @@ namespace pet_store
             this.menu = menu;
         }
 
-        private void viewUsersButton_Click(object sender, EventArgs e)
+        private void ViewUsersButton_Click(object sender, EventArgs e)
         {
-            ViewUserForm viewUserFrom = new ViewUserForm();
+            ViewUserForm viewUserFrom = new();
             viewUserFrom.Show();
         }
 
@@ -32,21 +27,21 @@ namespace pet_store
             menu.Show();
         }
 
-        private void addNewUserButton_Click(object sender, EventArgs e)
+        private void AddNewUserButton_Click(object sender, EventArgs e)
         {
-            AddNewUserForm addNewUserForm = new AddNewUserForm(user);
+            AddNewUserForm addNewUserForm = new(user);
             addNewUserForm.Show();
         }
 
-        private void editUserButton_Click(object sender, EventArgs e)
+        private void EditUserButton_Click(object sender, EventArgs e)
         {
-            EditUsersForm editUserForm = new EditUsersForm();
+            EditUsersForm editUserForm = new();
             editUserForm.Show();
         }
 
-        private void deleteUserButton_Click(object sender, EventArgs e)
+        private void DeleteUserButton_Click(object sender, EventArgs e)
         {
-            DeleteUserForm deleteUserForm = new DeleteUserForm();
+            DeleteUserForm deleteUserForm = new();
             deleteUserForm.Show();
         }
     }

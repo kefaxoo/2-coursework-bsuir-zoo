@@ -52,7 +52,7 @@
             this.showCatalogButton.TabIndex = 6;
             this.showCatalogButton.Text = "Просмотр каталога";
             this.showCatalogButton.UseVisualStyleBackColor = true;
-            this.showCatalogButton.Click += new System.EventHandler(this.showCatalogButton_Click);
+            this.showCatalogButton.Click += new System.EventHandler(this.ShowCatalogButton_Click);
             // 
             // addItemButton
             // 
@@ -62,7 +62,7 @@
             this.addItemButton.TabIndex = 7;
             this.addItemButton.Text = "Добавление нового товара";
             this.addItemButton.UseVisualStyleBackColor = true;
-            this.addItemButton.Click += new System.EventHandler(this.addItemButton_Click);
+            this.addItemButton.Click += new System.EventHandler(this.AddItemButton_Click);
             // 
             // editItemButton
             // 
@@ -72,7 +72,7 @@
             this.editItemButton.TabIndex = 8;
             this.editItemButton.Text = "Редактирование товара";
             this.editItemButton.UseVisualStyleBackColor = true;
-            this.editItemButton.Click += new System.EventHandler(this.editItemButton_Click);
+            this.editItemButton.Click += new System.EventHandler(this.EditItemButton_Click);
             // 
             // deleteItemButton
             // 
@@ -82,7 +82,7 @@
             this.deleteItemButton.TabIndex = 9;
             this.deleteItemButton.Text = "Удаление товара";
             this.deleteItemButton.UseVisualStyleBackColor = true;
-            this.deleteItemButton.Click += new System.EventHandler(this.deleteItemButton_Click);
+            this.deleteItemButton.Click += new System.EventHandler(this.DeleteItemButton_Click);
             // 
             // CatalogMenu
             // 

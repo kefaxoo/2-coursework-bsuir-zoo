@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace pet_store
@@ -29,7 +24,7 @@ namespace pet_store
             this.loginForm = loginForm;
         }
 
-        private void signUpButton_Click(object sender, EventArgs e)
+        private void SignUpButton_Click(object sender, EventArgs e)
         {
             using (var connection = new SqlConnection(SQLClass.BuildConnectionString()))
             {

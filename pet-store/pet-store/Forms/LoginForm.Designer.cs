@@ -98,7 +98,7 @@
             this.signInButton.TabIndex = 6;
             this.signInButton.Text = "Вход";
             this.signInButton.UseVisualStyleBackColor = true;
-            this.signInButton.Click += new System.EventHandler(this.signInButton_Click);
+            this.signInButton.Click += new System.EventHandler(this.SignInButton_Click);
             // 
             // signUpButton
             // 
@@ -108,7 +108,7 @@
             this.signUpButton.TabIndex = 7;
             this.signUpButton.Text = "Регистрация";
             this.signUpButton.UseVisualStyleBackColor = true;
-            this.signUpButton.Click += new System.EventHandler(this.signUpButton_Click);
+            this.signUpButton.Click += new System.EventHandler(this.SignUpButton_Click);
             // 
             // LoginForm
             // 

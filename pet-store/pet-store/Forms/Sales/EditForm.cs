@@ -1,36 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace pet_store
 {
     public partial class EditForm : Form
     {
-        private Item oldItem;
-        private Item newItem;
-        private Item item;
-        private SalesForm salesForm;
+        private readonly Item oldItem;
+        private readonly Item newItem;
+        private readonly Item item;
+        private readonly SalesForm salesForm;
 
         public EditForm(Item itemInBill, Item item, SalesForm salesForm)
         {
             InitializeComponent();
             oldItem = itemInBill;
+            this.item = item;
+            newItem = new Item(oldItem, oldItem.GetCount());
+            this.salesForm = salesForm;
             nameTextBox.Text = oldItem.GetName();
             priceTextBox.Text = oldItem.GetPrice().ToString();
             countNumericUpDown.Value = oldItem.GetCount();
             sumTextBox.Text = (oldItem.GetPrice() * oldItem.GetCount()).ToString();
-            this.item = item;
-            newItem = new Item(oldItem, oldItem.GetCount());
-            this.salesForm = salesForm;
         }
 
-        private void saveButton_Click(object sender, EventArgs e)
+        private void SaveButton_Click(object sender, EventArgs e)
         {
             if (oldItem != newItem)
             {
@@ -43,7 +36,7 @@ namespace pet_store
             }
         }
 
-        private void countNumericUpDown_ValueChanged(object sender, EventArgs e)
+        private void CountNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             if (countNumericUpDown.Value <= item.GetCount())
             {
@@ -57,7 +50,7 @@ namespace pet_store
             }
         }
 
-        private void deleteButton_Click(object sender, EventArgs e)
+        private void DeleteButton_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Вы точно хотите удалить данный товар", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {

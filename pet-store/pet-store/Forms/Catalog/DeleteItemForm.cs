@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace pet_store
@@ -39,6 +35,8 @@ namespace pet_store
                 row.Cells[5].Value = "Удалить";
                 itemsDataGridView.Rows.Add(row);
             }
+
+            itemsDataGridView.CellClick += ItemsDataGridView_CellClick;
         }
 
         private void ItemsDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
