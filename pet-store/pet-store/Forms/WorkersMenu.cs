@@ -43,5 +43,11 @@ namespace pet_store
             EditUsersForm editUserForm = new EditUsersForm();
             editUserForm.Show();
         }
+
+        private void deleteUserButton_Click(object sender, EventArgs e)
+        {
+            DeleteUserForm deleteUserForm = new DeleteUserForm();
+            deleteUserForm.Show();
+        }
     }
 }

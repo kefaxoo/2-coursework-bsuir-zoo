@@ -73,6 +73,7 @@
             this.deleteUserButton.TabIndex = 3;
             this.deleteUserButton.Text = "Удаление учётной записи";
             this.deleteUserButton.UseVisualStyleBackColor = true;
+            this.deleteUserButton.Click += new System.EventHandler(this.deleteUserButton_Click);
             // 
             // userLabel
             // 
