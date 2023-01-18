@@ -36,7 +36,7 @@ namespace pet_store
         private void LoadItems()
         {
             items = new List<Item>();
-            using (var connection = new SqlConnection(SQLClass.BuildConnectionString().ConnectionString))
+            using (var connection = new SqlConnection(SQLClass.BuildConnectionString()))
             {
                 connection.Open();
                 SQLClass.CheckStateOfConnection(connection);
@@ -127,7 +127,8 @@ namespace pet_store
         {
             if (e.ColumnIndex == itemsDataGridView.Columns[5].Index && e.RowIndex < billItems.Count)
             {
-                
+                EditForm editForm = new EditForm(billItems[e.RowIndex], items[GetIndex()], this);
+                editForm.Show();
             }
             
             if (e.ColumnIndex == itemsDataGridView.Columns[6].Index && e.RowIndex < billItems.Count)
@@ -203,6 +204,13 @@ namespace pet_store
         {
             showCatalog.Close();
             menu.Show();
+        }
+
+        public void UpdateBill(Item item)
+        {
+            var index = billItems.FindIndex(i => i.GetID() == item.GetID());
+            billItems[index] = item;
+            ReloadDataGridView();
         }
     }
 }

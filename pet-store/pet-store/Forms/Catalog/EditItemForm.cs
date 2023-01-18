@@ -29,7 +29,7 @@ namespace pet_store
 
         private void UpdateItem()
         {
-            using (var connection = new SqlConnection(SQLClass.BuildConnectionString().ConnectionString))
+            using (var connection = new SqlConnection(SQLClass.BuildConnectionString()))
             {
                 connection.Open();
                 SQLClass.CheckStateOfConnection(connection);

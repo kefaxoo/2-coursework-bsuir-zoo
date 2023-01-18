@@ -9,14 +9,8 @@ namespace pet_store
 {
     public class SQLClass
     {
-        //public static string BuildConnectionString() => "Data Source=PC;Initial Catalog=PetShop;Integrated Security=True";
-        public static SqlConnectionStringBuilder BuildConnectionString() => new SqlConnectionStringBuilder
-        {
-            DataSource = "localhost.mac",
-            UserID = "SA",
-            Password = "2016nokia",
-            InitialCatalog = "PetShopDatabase"
-        };
+        public static string BuildConnectionString() => "Data Source=PC;Initial Catalog=PetShop;Integrated Security=True";
+       
         public static void CheckStateOfConnection(SqlConnection connection)
         {
             if (connection.State == ConnectionState.Closed)
@@ -28,7 +22,7 @@ namespace pet_store
 
         public static int GetFirstFreeID(string table)
         {
-            using (var connection = new SqlConnection(BuildConnectionString().ConnectionString))
+            using (var connection = new SqlConnection(BuildConnectionString()))
             {
                 connection.Open();
                 CheckStateOfConnection(connection);

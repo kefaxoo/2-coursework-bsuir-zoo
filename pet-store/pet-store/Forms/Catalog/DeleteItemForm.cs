@@ -49,7 +49,7 @@ namespace pet_store
             {
                 if (MessageBox.Show("Вы точно хотите удалить данный товар", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    using (var connection = new SqlConnection(SQLClass.BuildConnectionString().ConnectionString))
+                    using (var connection = new SqlConnection(SQLClass.BuildConnectionString()))
                     {
                         connection.Open();
                         SQLClass.CheckStateOfConnection(connection);
@@ -68,7 +68,7 @@ namespace pet_store
         public void LoadItems()
         {
             items = new List<Item>();
-            using (var connection = new SqlConnection(SQLClass.BuildConnectionString().ConnectionString))
+            using (var connection = new SqlConnection(SQLClass.BuildConnectionString()))
             {
                 connection.Open();
                 SQLClass.CheckStateOfConnection(connection);

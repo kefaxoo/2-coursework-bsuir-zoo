@@ -43,7 +43,7 @@ namespace pet_store
         private void LoadItems()
         {
             items = new List<Item>();
-            using (var connection = new SqlConnection(SQLClass.BuildConnectionString().ConnectionString))
+            using (var connection = new SqlConnection(SQLClass.BuildConnectionString()))
             {
                 connection.Open();
                 SQLClass.CheckStateOfConnection(connection);

@@ -37,7 +37,7 @@ namespace pet_store
         private void LoadUsers()
         {
             Users = new List<User>();
-            using (var connection = new SqlConnection(SQLClass.BuildConnectionString().ConnectionString))
+            using (var connection = new SqlConnection(SQLClass.BuildConnectionString()))
             {
                 connection.Open();
                 SQLClass.CheckStateOfConnection(connection);

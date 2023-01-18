@@ -23,7 +23,7 @@ namespace pet_store
         public void LoadUsers()
         {
             users = new List<User>();
-            using (var connection = new SqlConnection(SQLClass.BuildConnectionString().ConnectionString))
+            using (var connection = new SqlConnection(SQLClass.BuildConnectionString()))
             {
                 connection.Open();
                 SQLClass.CheckStateOfConnection(connection);
@@ -88,7 +88,7 @@ namespace pet_store
             {
                 if (!IsLoginExist())
                 {
-                    using (var connection = new SqlConnection(SQLClass.BuildConnectionString().ConnectionString))
+                    using (var connection = new SqlConnection(SQLClass.BuildConnectionString()))
                     {
                         connection.Open();
                         SQLClass.CheckStateOfConnection(connection);

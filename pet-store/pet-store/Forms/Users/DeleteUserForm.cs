@@ -44,7 +44,7 @@ namespace pet_store
             {
                 if (MessageBox.Show("Вы точно хотите удалить данного пользователя", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    using (var connection = new SqlConnection(SQLClass.BuildConnectionString().ConnectionString))
+                    using (var connection = new SqlConnection(SQLClass.BuildConnectionString()))
                     {
                         connection.Open();
                         SQLClass.CheckStateOfConnection(connection);
@@ -63,7 +63,7 @@ namespace pet_store
         public void LoadUsers()
         {
             users = new List<User>();
-            using (var connection = new SqlConnection(SQLClass.BuildConnectionString().ConnectionString))
+            using (var connection = new SqlConnection(SQLClass.BuildConnectionString()))
             {
                 connection.Open();
                 SQLClass.CheckStateOfConnection(connection);

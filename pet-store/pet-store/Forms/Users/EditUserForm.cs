@@ -27,7 +27,7 @@ namespace pet_store.Forms.Users
 
         private void UpdateUser()
         {
-            using (var connection = new SqlConnection(SQLClass.BuildConnectionString().ConnectionString))
+            using (var connection = new SqlConnection(SQLClass.BuildConnectionString()))
             {
                 connection.Open();
                 SQLClass.CheckStateOfConnection(connection);

@@ -31,7 +31,7 @@ namespace pet_store
 
         private void signUpButton_Click(object sender, EventArgs e)
         {
-            using (var connection = new SqlConnection(SQLClass.BuildConnectionString().ConnectionString))
+            using (var connection = new SqlConnection(SQLClass.BuildConnectionString()))
             {
                 connection.Open();
                 SQLClass.CheckStateOfConnection(connection);

@@ -31,8 +31,8 @@ namespace pet_store
 
         private void UpdateDateAndTime(object sender, ElapsedEventArgs e)
         {
-            dateLabel.Text = $"Дата: {DateTime.Now.ToShortDateString()}";
-            timeLabel.Text = $"Время: {DateTime.Now.ToShortTimeString()}";
+            //dateLabel.Text = $"Дата: {DateTime.Now.ToShortDateString()}";
+            //timeLabel.Text = $"Время: {DateTime.Now.ToShortTimeString()}";
         }
 
         private void Menu_Load(object sender, EventArgs e)
