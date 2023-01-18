@@ -31,7 +31,7 @@ namespace pet_store.Forms.Users
             {
                 connection.Open();
                 SQLClass.CheckStateOfConnection(connection);
-                var command = new SqlCommand($"UPDATE Users SET Login = '{newUser.GetLogin()}', Password = '{newUser.GetPassword()}', Role = N'{newUser.GetRole()}' WHERE ID = '{newUser.GetID()}'", connection);
+                var command = new SqlCommand($"UPDATE Items SET Login = '{newUser.GetLogin()}', Password = '{newUser.GetPassword()}', Role = N'{newUser.GetRole()}' WHERE ID = '{newUser.GetID()}'", connection);
                 command.ExecuteNonQuery();
                 connection.Close();
                 MessageBox.Show($"Пользователь {newUser.GetLogin()} успешно изменён", "Успешная операция", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

@@ -54,5 +54,12 @@ namespace pet_store
             workersMenu.Show();
             this.Hide();
         }
+
+        private void catalogButton_Click(object sender, EventArgs e)
+        {
+            CatalogMenu catalogMenu = new CatalogMenu(user, this);
+            catalogMenu.Show();
+            this.Hide();
+        }
     }
 }
