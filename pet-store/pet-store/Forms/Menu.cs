@@ -66,8 +66,9 @@ namespace pet_store
         {
             SalesForm salesForm = new SalesForm(this);
             this.Hide();
-            if (salesForm.IsItemsEmpty())
+            if (salesForm.IsItemsNullOrEmpty())
             {
+                this.Show();
                 return;
             }
 

@@ -20,9 +20,9 @@ namespace pet_store
             LoadItems();
         }
 
-        public bool IsItemsEmpty()
+        public bool IsItemsNullOrEmpty()
         {
-            return items.Count == 0;
+            return items == null || items.Count == 0;
         }
 
         private void UpdateDataGridView()
@@ -56,7 +56,7 @@ namespace pet_store
         public void LoadItems()
         {
             items = new List<Item>();
-            using (var connection = new SqlConnection(SQLClass.BuildConnectionString()))
+            using (var connection = new SqlConnection(SQLClass.BuildConnectionString().ConnectionString))
             {
                 connection.Open();
                 SQLClass.CheckStateOfConnection(connection);

@@ -28,15 +28,15 @@ namespace pet_store
             this.menu = menu;
         }
 
-        public bool IsItemsEmpty()
+        public bool IsItemsNullOrEmpty()
         {
-            return items.Count == 0;
+            return items == null || items.Count == 0;
         }
 
         private void LoadItems()
         {
             items = new List<Item>();
-            using (var connection = new SqlConnection(SQLClass.BuildConnectionString()))
+            using (var connection = new SqlConnection(SQLClass.BuildConnectionString().ConnectionString))
             {
                 connection.Open();
                 SQLClass.CheckStateOfConnection(connection);
@@ -156,16 +156,37 @@ namespace pet_store
             itemsDataGridView.CellClick += ItemsDataGridView_CellClick;
         }
 
+        private bool IsItemInBill(Item item)
+        {
+            foreach (var itemInBill in billItems) {
+                if (item == itemInBill)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
         private void addItemButton_Click(object sender, EventArgs e)
         {
             if (IsItemInList())
             {
                 if (IsAvailable())
                 {
-                    billItems.Add(new Item(items[GetIndex()], Convert.ToInt32(countNumericUpDown.Value)));
+                    var item = items[GetIndex()];
+                    if (!IsItemInBill(item))
+                    {
+                        billItems.Add(new Item(item, Convert.ToInt32(countNumericUpDown.Value)));
+                        UpdateSum();
+                        ReloadDataGridView();
+                    } 
+                    else
+                    {
+                        MessageBox.Show("Данный товар уже в чеке, вы можете его изменить через кнопку \"Изменить\"", "Ошибка добавления", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+               
                     countNumericUpDown.Value = 1;
-                    UpdateSum();
-                    ReloadDataGridView();
+                    idNumericUpDown.Value = 1;
                 }
                 else
                 {
