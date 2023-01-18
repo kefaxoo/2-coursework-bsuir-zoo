@@ -21,6 +21,15 @@ namespace pet_store
             this.count = count;
         }
 
+        public Item(Item item, int count)
+        {
+            ID = item.GetID();
+            name = item.GetName();
+            price = item.GetPrice();
+            category = item.GetCategory();
+            this.count = count;
+        }
+
         public int GetID() => ID;
 
         public string GetName() => name;

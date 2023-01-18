@@ -65,6 +65,7 @@
             this.salesButton.TabIndex = 2;
             this.salesButton.Text = "Продажи";
             this.salesButton.UseVisualStyleBackColor = true;
+            this.salesButton.Click += new System.EventHandler(this.salesButton_Click);
             // 
             // userLabel
             // 

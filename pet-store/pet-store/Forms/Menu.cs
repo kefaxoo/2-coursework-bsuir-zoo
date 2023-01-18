@@ -5,9 +5,9 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Timers;
 using System.Windows.Forms;
 using Timer = System.Timers.Timer;
+using System.Timers;
 
 namespace pet_store
 {
@@ -60,6 +60,18 @@ namespace pet_store
             CatalogMenu catalogMenu = new CatalogMenu(user, this);
             catalogMenu.Show();
             this.Hide();
+        }
+
+        private void salesButton_Click(object sender, EventArgs e)
+        {
+            SalesForm salesForm = new SalesForm(this);
+            this.Hide();
+            if (salesForm.IsItemsEmpty())
+            {
+                return;
+            }
+
+            salesForm.Show();
         }
     }
 }
