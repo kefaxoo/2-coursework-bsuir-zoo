@@ -1,11 +1,6 @@
-﻿using pet_store.Forms.Users;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace pet_store
@@ -20,9 +15,9 @@ namespace pet_store
             LoadItems();
         }
 
-        public bool IsItemsEmpty()
+        public bool IsItemsNullOrEmpty()
         {
-            return items.Count == 0;
+            return items == null || items.Count == 0;
         }
 
         private void UpdateDataGridView()
@@ -48,7 +43,7 @@ namespace pet_store
         {
             if (e.ColumnIndex == itemsDataGridView.Columns[5].Index && e.RowIndex < items.Count)
             {
-                EditItemForm editItemForm = new EditItemForm(items[e.RowIndex], this);
+                EditItemForm editItemForm = new(items[e.RowIndex], this);
                 editItemForm.Show();
             }
         }

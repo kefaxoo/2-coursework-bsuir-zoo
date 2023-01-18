@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace pet_store
@@ -56,7 +50,7 @@ namespace pet_store
             }
         }
 
-        private void ShowMessageBox(string text) => MessageBox.Show($"Текстовое поле {text} пустое", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        private static void ShowMessageBox(string text) => MessageBox.Show($"Текстовое поле {text} пустое", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
         private bool AreTextBoxesEmpty()
         {
@@ -88,7 +82,7 @@ namespace pet_store
             return false;
         }
 
-        private void signInButton_Click(object sender, EventArgs e)
+        private void SignInButton_Click(object sender, EventArgs e)
         {
             if (!AreTextBoxesEmpty())
             {
@@ -100,7 +94,7 @@ namespace pet_store
                         findLogin = true;
                         if (user.GetPassword() == passwordTextBox.Text)
                         {
-                            Menu form = new Menu(user);
+                            Menu form = new(user);
                             form.Show();
                             this.Hide();
                             return;
@@ -119,7 +113,7 @@ namespace pet_store
             }
         }
 
-        private void signUpButton_Click(object sender, EventArgs e)
+        private void SignUpButton_Click(object sender, EventArgs e)
         {
             if (!AreTextBoxesEmpty()) 
             {

@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Text;
 using System.Windows.Forms;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace pet_store
 {
     public class SQLClass
     {
         public static string BuildConnectionString() => "Data Source=PC;Initial Catalog=PetShop;Integrated Security=True";
-
+       
         public static void CheckStateOfConnection(SqlConnection connection)
         {
             if (connection.State == ConnectionState.Closed)

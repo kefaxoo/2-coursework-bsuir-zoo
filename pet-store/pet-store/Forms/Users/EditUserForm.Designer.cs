@@ -1,4 +1,4 @@
-﻿namespace pet_store.Forms.Users
+﻿namespace pet_store
 {
     partial class EditUserForm
     {
@@ -109,7 +109,7 @@
             this.saveUserButton.TabIndex = 7;
             this.saveUserButton.Text = "Сохранить изменения";
             this.saveUserButton.UseVisualStyleBackColor = true;
-            this.saveUserButton.Click += new System.EventHandler(this.saveUserButton_Click);
+            this.saveUserButton.Click += new System.EventHandler(this.SaveUserButton_Click);
             // 
             // EditUserForm
             // 

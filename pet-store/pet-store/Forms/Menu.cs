@@ -1,20 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Timers;
 using System.Windows.Forms;
 using Timer = System.Timers.Timer;
+using System.Timers;
 
 namespace pet_store
 {
     public partial class Menu : Form
     {
-        private readonly Timer timer = new Timer(1000);
-        private User user;
+        private readonly Timer timer = new(1000);
+        private readonly User user;
         public Menu(User user)
         {
             InitializeComponent();
@@ -31,8 +25,8 @@ namespace pet_store
 
         private void UpdateDateAndTime(object sender, ElapsedEventArgs e)
         {
-            dateLabel.Text = $"Дата: {DateTime.Now.ToShortDateString()}";
-            timeLabel.Text = $"Время: {DateTime.Now.ToShortTimeString()}";
+            //dateLabel.Text = $"Дата: {DateTime.Now.ToShortDateString()}";
+            //timeLabel.Text = $"Время: {DateTime.Now.ToShortTimeString()}";
         }
 
         private void Menu_Load(object sender, EventArgs e)
@@ -43,23 +37,36 @@ namespace pet_store
 
         private void Menu_FormClosed(object sender, FormClosedEventArgs e)
         {
-            LoginForm loginForm = new LoginForm();
+            LoginForm loginForm = new();
             this.Hide();
             loginForm.Show();
         }
 
-        private void workersButton_Click(object sender, EventArgs e)
+        private void WorkersButton_Click(object sender, EventArgs e)
         {
-            WorkersMenu workersMenu = new WorkersMenu(user, this);
+            WorkersMenu workersMenu = new(user, this);
             workersMenu.Show();
             this.Hide();
         }
 
-        private void catalogButton_Click(object sender, EventArgs e)
+        private void CatalogButton_Click(object sender, EventArgs e)
         {
-            CatalogMenu catalogMenu = new CatalogMenu(user, this);
+            CatalogMenu catalogMenu = new(user, this);
             catalogMenu.Show();
             this.Hide();
+        }
+
+        private void SalesButton_Click(object sender, EventArgs e)
+        {
+            SalesForm salesForm = new(this);
+            this.Hide();
+            if (salesForm.IsItemsNullOrEmpty())
+            {
+                this.Show();
+                return;
+            }
+
+            salesForm.Show();
         }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace pet_store
+﻿namespace pet_store
 {
     public class Item
     {
@@ -18,6 +14,15 @@ namespace pet_store
             this.name = name;
             this.price = price;
             this.category = category;
+            this.count = count;
+        }
+
+        public Item(Item item, int count)
+        {
+            ID = item.GetID();
+            name = item.GetName();
+            price = item.GetPrice();
+            category = item.GetCategory();
             this.count = count;
         }
 

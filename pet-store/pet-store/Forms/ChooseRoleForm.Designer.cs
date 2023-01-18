@@ -73,7 +73,7 @@
             this.signUpButton.TabIndex = 4;
             this.signUpButton.Text = "Зарегестрироваться";
             this.signUpButton.UseVisualStyleBackColor = true;
-            this.signUpButton.Click += new System.EventHandler(this.signUpButton_Click);
+            this.signUpButton.Click += new System.EventHandler(this.SignUpButton_Click);
             // 
             // ChooseRoleForm
             // 

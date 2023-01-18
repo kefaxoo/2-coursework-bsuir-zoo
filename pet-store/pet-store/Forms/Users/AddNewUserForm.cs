@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace pet_store
@@ -50,7 +46,7 @@ namespace pet_store
                 MessageBox.Show("В базе данных нет пользователей\nПросьба пройти регистрацию", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        private void ShowMessageBox(string text) => MessageBox.Show($"Текстовое поле {text} пустое", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        private static void ShowMessageBox(string text) => MessageBox.Show($"Текстовое поле {text} пустое", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
         private bool AreTextBoxesEmpty()
         {
@@ -82,7 +78,7 @@ namespace pet_store
             return false;
         }
 
-        private void addUserButton_Click(object sender, EventArgs e)
+        private void AddUserButton_Click(object sender, EventArgs e)
         {
             if (!AreTextBoxesEmpty())
             {
