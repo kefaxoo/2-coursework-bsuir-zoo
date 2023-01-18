@@ -100,7 +100,9 @@ namespace pet_store
                         findLogin = true;
                         if (user.GetPassword() == passwordTextBox.Text)
                         {
-                            MessageBox.Show("", "Успешный вход", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            Menu form = new Menu(user);
+                            form.Show();
+                            this.Hide();
                             return;
                         }
                     }
