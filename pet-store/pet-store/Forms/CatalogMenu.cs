@@ -36,5 +36,11 @@ namespace pet_store
         {
             menu.Show();
         }
+
+        private void addItemButton_Click(object sender, EventArgs e)
+        {
+            AddItemForm addItemForm = new AddItemForm();
+            addItemForm.Show();
+        }
     }
 }

@@ -62,6 +62,7 @@
             this.addItemButton.TabIndex = 7;
             this.addItemButton.Text = "Добавление нового товара";
             this.addItemButton.UseVisualStyleBackColor = true;
+            this.addItemButton.Click += new System.EventHandler(this.addItemButton_Click);
             // 
             // editItemButton
             // 
