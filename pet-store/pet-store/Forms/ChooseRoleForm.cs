@@ -35,7 +35,7 @@ namespace pet_store
             {
                 connection.Open();
                 SQLClass.CheckStateOfConnection(connection);
-                string role = adminRadioButton.Checked ? "Администратор" : "Продавец";
+                string role = adminRadioButton.Checked ? "Директор" : "Продавец";
                 var command = new SqlCommand($"INSERT INTO Users (ID, Login, Password, Role) VALUES ('{SQLClass.GetFirstFreeID("Users")}', '{login}', '{password}', N'{role}')", connection);
                 command.ExecuteNonQuery();
                 connection.Close();
