@@ -130,11 +130,6 @@ namespace pet_store
                 EditForm editForm = new EditForm(billItems[e.RowIndex], items[GetIndex()], this);
                 editForm.Show();
             }
-            
-            if (e.ColumnIndex == itemsDataGridView.Columns[6].Index && e.RowIndex < billItems.Count)
-            {
-
-            }
         }
 
         private void ReloadDataGridView()
@@ -150,11 +145,10 @@ namespace pet_store
                 row.Cells[3].Value = item.GetCount();
                 row.Cells[4].Value = item.GetPrice() * item.GetCount();
                 row.Cells[5].Value = "Изменить";
-                row.Cells[6].Value = "Удалить";
                 itemsDataGridView.Rows.Add(row);
             }
 
-            itemsDataGridView.CellClick += ItemsDataGridView_CellClick;
+            UpdateSum();
         }
 
         private bool IsItemInBill(Item item)
@@ -178,7 +172,6 @@ namespace pet_store
                     if (!IsItemInBill(item))
                     {
                         billItems.Add(new Item(item, Convert.ToInt32(countNumericUpDown.Value)));
-                        UpdateSum();
                         ReloadDataGridView();
                     } 
                     else
@@ -210,6 +203,13 @@ namespace pet_store
         {
             var index = billItems.FindIndex(i => i.GetID() == item.GetID());
             billItems[index] = item;
+            ReloadDataGridView();
+        }
+
+        public void DeleteItemInBill(Item item)
+        {
+            var index = billItems.FindIndex(i => i.GetID() == item.GetID());
+            billItems.RemoveAt(index);
             ReloadDataGridView();
         }
     }

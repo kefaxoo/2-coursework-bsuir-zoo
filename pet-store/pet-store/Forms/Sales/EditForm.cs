@@ -56,5 +56,15 @@ namespace pet_store
                 countNumericUpDown.Value = newItem.GetCount();
             }
         }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Вы точно хотите удалить данный товар", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                salesForm.DeleteItemInBill(newItem);
+            }
+
+            this.Close();
+        }
     }
 }

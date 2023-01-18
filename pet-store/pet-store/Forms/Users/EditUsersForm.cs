@@ -34,8 +34,6 @@ namespace pet_store
                 row.Cells[4].Value = "Изменить";
                 usersDataGridView.Rows.Add(row);
             }
-
-            usersDataGridView.CellClick += UsersDataGridView_CellClick;
         }
 
         private void UsersDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)

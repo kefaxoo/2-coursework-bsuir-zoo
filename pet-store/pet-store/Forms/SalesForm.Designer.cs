@@ -46,7 +46,6 @@
             this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Remove = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.idNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.countNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemsDataGridView)).BeginInit();
@@ -170,7 +169,7 @@
             // 
             // openItemsButton
             // 
-            this.openItemsButton.Location = new System.Drawing.Point(573, 415);
+            this.openItemsButton.Location = new System.Drawing.Point(491, 415);
             this.openItemsButton.Name = "openItemsButton";
             this.openItemsButton.Size = new System.Drawing.Size(182, 23);
             this.openItemsButton.TabIndex = 16;
@@ -187,13 +186,13 @@
             this.Price,
             this.Count,
             this.Sum,
-            this.Edit,
-            this.Remove});
+            this.Edit});
             this.itemsDataGridView.Location = new System.Drawing.Point(12, 100);
             this.itemsDataGridView.Name = "itemsDataGridView";
             this.itemsDataGridView.RowTemplate.Height = 25;
-            this.itemsDataGridView.Size = new System.Drawing.Size(743, 309);
+            this.itemsDataGridView.Size = new System.Drawing.Size(661, 309);
             this.itemsDataGridView.TabIndex = 17;
+            this.itemsDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ItemsDataGridView_CellClick);
             // 
             // Position
             // 
@@ -231,16 +230,11 @@
             this.Edit.Name = "Edit";
             this.Edit.ReadOnly = true;
             // 
-            // Remove
-            // 
-            this.Remove.HeaderText = "";
-            this.Remove.Name = "Remove";
-            // 
             // SalesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(763, 450);
+            this.ClientSize = new System.Drawing.Size(682, 450);
             this.Controls.Add(this.itemsDataGridView);
             this.Controls.Add(this.openItemsButton);
             this.Controls.Add(this.closeBillButton);
@@ -285,6 +279,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Count;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sum;
         private System.Windows.Forms.DataGridViewButtonColumn Edit;
-        private System.Windows.Forms.DataGridViewButtonColumn Remove;
     }
 }

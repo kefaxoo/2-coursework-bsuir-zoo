@@ -38,6 +38,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.sumTextBox = new System.Windows.Forms.TextBox();
             this.saveButton = new System.Windows.Forms.Button();
+            this.deleteButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.countNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
@@ -143,11 +144,22 @@
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
+            // deleteButton
+            // 
+            this.deleteButton.Location = new System.Drawing.Point(12, 232);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(147, 23);
+            this.deleteButton.TabIndex = 10;
+            this.deleteButton.Text = "Удаление товара";
+            this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+            // 
             // EditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(171, 234);
+            this.ClientSize = new System.Drawing.Size(171, 263);
+            this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.sumTextBox);
             this.Controls.Add(this.label5);
@@ -178,5 +190,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox sumTextBox;
         private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.Button deleteButton;
     }
 }
