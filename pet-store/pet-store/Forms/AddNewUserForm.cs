@@ -4,30 +4,25 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace pet_store
 {
-    public partial class LoginForm : Form
+    public partial class AddNewUserForm : Form
     {
-        private List<User> Users;
-        
-        public LoginForm()
+        private List<User> users;
+
+        public AddNewUserForm(User user)
         {
             InitializeComponent();
-            nameLabel.Left = (this.ClientSize.Width - nameLabel.Width) / 2;
-            signLabel.Left = (this.ClientSize.Width - signLabel.Width) / 2;
-            loginLabel.Left = (this.ClientSize.Width - loginLabel.Width) / 2;
-            passwordLabel.Left = (this.ClientSize.Width - passwordLabel.Width) / 2;
+            userLabel.Text += user.GetRole();
             LoadUsers();
         }
 
         public void LoadUsers()
         {
-            Users = new List<User>();
+            users = new List<User>();
             using (var connection = new SqlConnection(SQLClass.BuildConnectionString()))
             {
                 connection.Open();
@@ -42,7 +37,7 @@ namespace pet_store
                         var login = reader.GetValue(1).ToString();
                         var password = reader.GetValue(2).ToString();
                         var role = reader.GetValue(3).ToString();
-                        Users.Add(new User(id, login, password, role));
+                        users.Add(new User(id, login, password, role));
                     }
                 }
 
@@ -50,12 +45,11 @@ namespace pet_store
                 connection.Close();
             }
 
-            if (Users.Count == 0)
+            if (users.Count == 0)
             {
                 MessageBox.Show("В базе данных нет пользователей\nПросьба пройти регистрацию", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
         private void ShowMessageBox(string text) => MessageBox.Show($"Текстовое поле {text} пустое", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
         private bool AreTextBoxesEmpty()
@@ -77,7 +71,7 @@ namespace pet_store
 
         private bool IsLoginExist()
         {
-            foreach (var user in Users)
+            foreach (var user in users)
             {
                 if (user.GetLogin() == loginTextBox.Text)
                 {
@@ -88,57 +82,29 @@ namespace pet_store
             return false;
         }
 
-        private void signInButton_Click(object sender, EventArgs e)
+        private void addUserButton_Click(object sender, EventArgs e)
         {
             if (!AreTextBoxesEmpty())
             {
-                var findLogin = false;
-                foreach (var user in Users)
-                {
-                    if (user.GetLogin() == loginTextBox.Text)
-                    {
-                        findLogin = true;
-                        if (user.GetPassword() == passwordTextBox.Text)
-                        {
-                            Menu form = new Menu(user);
-                            form.Show();
-                            this.Hide();
-                            return;
-                        }
-                    }
-                }
-
-                if (findLogin)
-                {
-                    MessageBox.Show("Вы ввели неправильный логин или пароль, попробуйте ещё раз", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                } 
-                else
-                {
-                    MessageBox.Show("Данного пользователя не существует, пройдите регистрацию", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-        }
-
-        private void signUpButton_Click(object sender, EventArgs e)
-        {
-            if (!AreTextBoxesEmpty()) 
-            {
                 if (!IsLoginExist())
                 {
-                    var form = new ChooseRoleForm();
-                    form.Set(loginTextBox.Text, passwordTextBox.Text, this);
-                    form.Show();
-                } 
+                    using (var connection = new SqlConnection(SQLClass.BuildConnectionString()))
+                    {
+                        connection.Open();
+                        SQLClass.CheckStateOfConnection(connection);
+                        string role = managerRadioButton.Checked ? "Директор" : "Продавец";
+                        var command = new SqlCommand($"INSERT INTO Users (ID, Login, Password, Role) VALUES ('{SQLClass.GetFirstFreeID("Users")}', '{loginTextBox.Text}', '{passwordTextBox.Text}', N'{role}')", connection);
+                        command.ExecuteNonQuery();
+                        connection.Close();
+                        MessageBox.Show($"Пользователь {loginTextBox.Text} добавлен в систему", "Операция завершена успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+                    }
+                }
                 else
                 {
-                    MessageBox.Show("Невозможно зарегестрировать пользователя с таким логином", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Пользователь с таким логином уже существует", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-        }
-
-        private void LoginForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Environment.Exit(0);
         }
     }
 }

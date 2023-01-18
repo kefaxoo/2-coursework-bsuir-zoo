@@ -48,7 +48,9 @@ namespace pet_store
 
         private void workersButton_Click(object sender, EventArgs e)
         {
-
+            WorkersMenu workersMenu = new WorkersMenu(user, this);
+            workersMenu.Show();
+            this.Hide();
         }
     }
 }

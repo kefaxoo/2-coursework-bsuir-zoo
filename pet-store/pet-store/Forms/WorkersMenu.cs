@@ -10,9 +10,32 @@ namespace pet_store
 {
     public partial class WorkersMenu : Form
     {
-        public WorkersMenu()
+        private User user;
+        private Menu menu;
+
+        public WorkersMenu(User user, Menu menu)
         {
             InitializeComponent();
+            this.user = user;
+            userLabel.Text += user.GetLogin();
+            this.menu = menu;
+        }
+
+        private void viewUsersButton_Click(object sender, EventArgs e)
+        {
+            ViewUserForm viewUserFrom = new ViewUserForm();
+            viewUserFrom.Show();
+        }
+
+        private void WorkersMenu_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            menu.Show();
+        }
+
+        private void addNewUserButton_Click(object sender, EventArgs e)
+        {
+            AddNewUserForm addNewUserForm = new AddNewUserForm(user);
+            addNewUserForm.Show();
         }
     }
 }
