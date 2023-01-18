@@ -37,5 +37,11 @@ namespace pet_store
             AddNewUserForm addNewUserForm = new AddNewUserForm(user);
             addNewUserForm.Show();
         }
+
+        private void editUserButton_Click(object sender, EventArgs e)
+        {
+            EditUsersForm editUserForm = new EditUsersForm();
+            editUserForm.Show();
+        }
     }
 }

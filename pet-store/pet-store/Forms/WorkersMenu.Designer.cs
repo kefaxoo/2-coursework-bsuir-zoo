@@ -63,6 +63,7 @@
             this.editUserButton.TabIndex = 2;
             this.editUserButton.Text = "Редактирование учётной записи";
             this.editUserButton.UseVisualStyleBackColor = true;
+            this.editUserButton.Click += new System.EventHandler(this.editUserButton_Click);
             // 
             // deleteUserButton
             // 
