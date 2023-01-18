@@ -46,12 +46,22 @@ namespace pet_store
         private void editItemButton_Click(object sender, EventArgs e)
         {
             EditItemsForm editItemsForm = new EditItemsForm();
+            if (editItemsForm.IsItemsNullOrEmpty())
+            {
+                return;
+            }
+
             editItemsForm.Show();
         }
 
         private void deleteItemButton_Click(object sender, EventArgs e)
         {
             DeleteItemForm deleteItemForm = new DeleteItemForm();
+            if (deleteItemForm.IsItemsNullOrEmpty())
+            {
+                return;
+            }
+            
             deleteItemForm.Show();
         }
     }

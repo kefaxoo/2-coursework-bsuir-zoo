@@ -37,7 +37,7 @@ namespace pet_store
 
         private void AddItem(Item item)
         {
-            using (var connection = new SqlConnection(SQLClass.BuildConnectionString()))
+            using (var connection = new SqlConnection(SQLClass.BuildConnectionString().ConnectionString))
             {
                 connection.Open();
                 SQLClass.CheckStateOfConnection(connection);
